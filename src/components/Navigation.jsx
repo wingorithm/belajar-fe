@@ -3,6 +3,7 @@ import getAuthUser from "@/lib/getAuthUser";
 
 export default async function Navigation() {
     const authUser = await getAuthUser();
+
     return (
         <nav>
             <NavLink label="Home" href="/" />
@@ -10,6 +11,9 @@ export default async function Navigation() {
             {authUser ? (
                 <div className="flex items-center">
                     <NavLink label="Dashboard" href="/dashboard" />
+                    <form action={logout}>
+                        <button className="nav-link">Logout</button>
+                    </form>
                 </div>
             ) : (
                 <div>
@@ -18,5 +22,5 @@ export default async function Navigation() {
                 </div>
             )}
         </nav>
-    )
+    );
 }
